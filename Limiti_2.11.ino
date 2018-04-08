@@ -1,3 +1,33 @@
+/*
+***********************************************************************
+*   ********************  L  I  M  I  T  I  ***********************   *
+*   ***** Un misuratore di velocità e molto altro con Arduino *****   *
+*   *********  Copyright Gianluca Giangreco 2016-2017  ************   *
+*   *****  https://github.com/Gatware/Limiti/tree/Limiti_2.11  ****   *
+*                                                                     *
+*   Questo software  è  a puro scopo didattico, pertanto  non assumo  *
+* responsabilità sulla precisione e veridicità dei valori riportati.  *
+* Mi sono impegnato nello scriverlo e ringrazio fin d'ora chi voles-  *
+* se aiutarmi con correzioni, miglioramenti o suggerimenti.           *
+*                                                                     *
+*   LIMIti is free software: you can redistribute it and/or modify it *
+* under the terms of  the GNU General Public License, as published by *
+* the  Free Software Foundation,  either version 3 of the License, or *
+* (at your option) any later version.                                 *
+*                                                                     *
+*   LIMITI  is  distributed  to share  my work  and my experience and *
+* to improve it together, but WITHOUT ANY WARRANTY relating to proper *
+* working and accuracy. See the GNU General Public License  for  more * 
+* details.                                                            *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*                                                                     *
+*          See "a_commenti" tab for connections details.              *
+*                                                                     *
+*      Realizzato e collaudato con Arduino Uno (ATMEGA 328P).         *
+*                                                                     *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*/
+
 #include <Adafruit_GPS.h> //Using AdaFruit GPS lib
 #include <EEPROM.h>
 #include <SoftwareSerial.h> //Serial com
