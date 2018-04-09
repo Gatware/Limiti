@@ -31,10 +31,8 @@ else {MAX=LIM*1.05;}
 void DisplayLimiti()
 {
   lcd.setCursor(9,1);
-  if (LIM < 100)
-    lcd.print( ' ' );
-  if (LIM < 10)
-    lcd.print( ' ' );
-  lcd.print( LIM ); 
+  if      (LIM<10)  lcd.print("  ");
+  else if (LIM<100) lcd.print(' ');
+  lcd.print(LIM); 
 }
 

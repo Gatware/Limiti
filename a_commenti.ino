@@ -136,7 +136,7 @@
 // 3.1     9/4/18 Parte dalla 2.11 con le modifiche di /dev (arduino forum/github) per avere un'indicazione della sincronizzazione dell'ora quando ancora non è stato agganciato
 //                completamente almeno un satellite e migliorarlo usando la sua libreria gps al posto di quella Adafruit.
 
-const char verChars[] PROGMEM = "v2.11";  // Don't print this variable
+const char verChars[] PROGMEM = " v3.1";  // Don't print this variable
 const __FlashStringHelper * ver = (const __FlashStringHelper *) verChars; // ok
 
 /* La tolleranza sui limiti è del 5% o, comunque, di almeno 5km/h:

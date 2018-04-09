@@ -10,13 +10,12 @@ lcd.print(F("   Ora e data   "));
 t1=millis();
 
 bool esce_da_menu1 = false;
-while((millis() - t1 < 500) ||
-      (digitalRead(10)==LOW)) // Attende che venga lasciato il pulsante.
+while((millis()-t1<500) || (digitalRead(10)==LOW)) // Attende che venga lasciato il pulsante.
   {
   if (GPS.available( gpsSerial ))
     fix = GPS.read();
 
-  if( millis() - t1 > 1000)
+  if(millis()-t1>1000)
     {
     menu2();
     esce_da_menu1 = true;
@@ -25,7 +24,7 @@ while((millis() - t1 < 500) ||
   } // Quando t1 arriva a 2,5 secondi, salta a menu2(), poi ritorna qui
     // e salta alla sequenza di uscita da questo menu.
 
-if (!esce_da_menu1)
+if(!esce_da_menu1)
   {
   while(digitalRead(10)==LOW); // Attende che venga lasciato il pulsante
   lcd.clear();
@@ -34,17 +33,16 @@ if (!esce_da_menu1)
 
   if(B>2) Bip(); //    ------- Coordinate -------
   lcd.clear();
-  lcd.print( F("  Coordinate") );
+  lcd.print(F("  Coordinate"));
   t1=millis();
   while ((millis() - t1 < 500) || (digitalRead(10)==LOW))
     {
-    if (GPS.available( gpsSerial ))
-      fix = GPS.read();
+    if (GPS.available(gpsSerial)) fix=GPS.read();
     }
   lcd.clear();
   lcd.setCursor(12,0);
-  if(R==1)lcd.print( 'a'); // Distanza in linea d'aria
-  else lcd.print( 'r'); // Distanza reale percorsa
+  if(R==1) lcd.print('a'); // Distanza in linea d'aria
+  else lcd.print('r'); // Distanza reale percorsa
 
   t1=millis();
   while(digitalRead(10)==HIGH) // Continua a pilotare i LED ed eseguire Coordinate finché non premo
@@ -54,23 +52,21 @@ if (!esce_da_menu1)
   lcd.clear();
   lcd.print( F("Batteria:") );
   t1=millis();
-  while ((millis() - t1 < 500) || (digitalRead(10)==LOW))
+  while ((millis()-t1<500) || (digitalRead(10)==LOW))
     {
-    if (GPS.available( gpsSerial ))
-      fix = GPS.read();
+    if (GPS.available(gpsSerial)) fix=GPS.read();
     }
   BattVolt();
 
   while(digitalRead(10)==HIGH) // Continua a pilotare i LED e a visualizzare la tensione finché non premo
     {
-      if (GPS.available( gpsSerial ))
-        fix = GPS.read();
-      if (millis()-t>2000)
-        {
-        t=millis();
-        LEDFixNoFix();
-        BattVolt();
-        }
+    if (GPS.available(gpsSerial)) fix=GPS.read();
+    if (millis()-t>2000)
+      {
+      t=millis();
+      LEDFixNoFix();
+      BattVolt();
+      }
     }            // Parse the data; Pilota i LED; Legge la batteria.
   }
 

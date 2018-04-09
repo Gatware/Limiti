@@ -20,8 +20,8 @@ if (GPS.available( gpsSerial ))
   lcd.setCursor(15,0); 
   if (fix.valid.status && (fix.status >= gps_fix::STATUS_STD))
     lcd.print('F'); // Se ha fatto il punto scrive F
-  else
-    lcd.write(byte(0)); // NoFix
+    else if (fix.valid.time) lcd.print('t'); // Solo ora e data
+    else lcd.write(byte(0)); // NoFix
 
   lcd.setCursor(0,0);
   lcd.print( ' ' );

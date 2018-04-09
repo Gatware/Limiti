@@ -82,40 +82,32 @@ if (GPS.available( gpsSerial ))
   fix = GPS.read();
 
   lcd.setCursor(14,1);
-  if (fix.valid.satellites) {
-    if (fix.satellites<10)
-      lcd.print(' ');
+  if (fix.valid.satellites)
+    {
+    if (fix.satellites<10) lcd.print(' ');
     lcd.print( fix.satellites );
-  }
+    }
 
   lcd.setCursor(15,0);
-  if (fix.valid.status && (fix.status >= gps_fix::STATUS_STD) &&
-      fix.valid.speed)
+  if(fix.valid.status && (fix.status >= gps_fix::STATUS_STD) && fix.valid.speed)
     {
-
     // Good fix
-
-    lcd.print( 'F');
+    lcd.print('F');
     if (PrimoFix) { Zero(); PrimoFix=0;}
 
-    int vd = fix.speed_metersph() / 10; // km/h*100 (intero)
-  
+    int vd = fix.speed_metersph()/10; // km/h*100 (intero)
     int vm;
     // vdx[cm]=vd;
     // vm=(vdx[1]+vdx[2]+vdx[3])/3; // fa la media delle ultime 3 letture
     // cm++; if(cm==4) cm=1;
     vm = vd;
-
     V = (int) vm/100;
-
-    if (V < 5) V = 0;
+    if (V<5) V=0;
 
     lcd.setCursor(9,0);
-    if (V<100)
-      lcd.print( ' ' );
-    if (V<10)
-      lcd.print( ' ' );
-    lcd.print( V );
+    if (V<100) lcd.print(' ');
+    if (V<10)  lcd.print(' ');
+    lcd.print(V);
 
     // Esegue Direzione in Coordinate e disegna la freccia in (13,0):
     if (vm>100)
@@ -124,8 +116,9 @@ if (GPS.available( gpsSerial ))
       Fermo=0;
       xLCD=13;
       Direzione();
-
-      } else if (Fermo==0) {
+      }
+    else if (Fermo==0)
+      {
       // *: Serve per evitare che da fermo la freccia giri casualmente.
       // Se si è appena fermato, cancella la freccia, se lo ricorda e non lo fa più.
       lcd.setCursor(13,0);
@@ -133,15 +126,25 @@ if (GPS.available( gpsSerial ))
       Fermo=1;
       }
 
-    } else {
-      // not a good fix
-      lcd.write(byte(0));
-      lcd.setCursor(9,0);
-      lcd.print(F(" --  "));
-      V = 0;
+    }
+   else if (fix.valid.time)
+    {
+    // Legge solo ora e data
+    lcd.print('t');
+    lcd.setCursor(9,0);
+    lcd.print(F(" --  "));
+    V = 0;
+    }
+    
+  else
+    {
+    // not a good fix
+    lcd.write(byte(0));
+    lcd.setCursor(9,0);
+    lcd.print(F(" --  "));
+    V = 0;
     }
   }
-
 
 if(digitalRead(0)==0) // Se il pulsante ACQ è premuto
   {
@@ -153,10 +156,9 @@ if(digitalRead(0)==0) // Se il pulsante ACQ è premuto
     Z=(LIM-40)/10; // Calcola l'indice Z dal limite impostato a partire dalla velocità corrente.
     CalcoloLimiti();
     DisplayLimiti();
-    t1 = millis();
-    while (millis() - t1 < 150)
-      if (GPS.available( gpsSerial ))
-        fix = GPS.read();
+    t1=millis();
+    while(millis()-t1<150)
+      if(GPS.available(gpsSerial)) fix=GPS.read();
     }
   else
     {
@@ -165,8 +167,8 @@ if(digitalRead(0)==0) // Se il pulsante ACQ è premuto
     if(B>1) Bippino();
     lcd.setCursor(0,0); lcd.print(F("V<40!")); delay(100);
     if(B>1) Bippino();
-    while (millis() - t1 < 700)
-      if (GPS.available( gpsSerial ))
+    while (millis()-t1<700)
+      if (GPS.available(gpsSerial))
         fix = GPS.read();
     lcd.setCursor(0,0); lcd.print(F("     "));
     while (millis() - t1 < 100)
