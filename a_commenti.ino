@@ -137,6 +137,8 @@
 //                completamente almeno un satellite e migliorarlo usando la sua libreria gps al posto di quella Adafruit.
 //        15/4/18 Adesso cancella "Pr" e il numero di preset quando viene premuto il taso ACQ.
 //                Adesso occuma meno memoria, meno RAM, però ancora non rileva la sincronizzazione dell'ora.
+//        19/4/18 Finalmente, con la collaborazione di /dev, dopo aver anche letto e decodificato Tx e Rx del GPS con l'osclloscopio, il rilevamento della sincronizzazione
+//                di ora e data sembra funzionare! :)
 
 const char verChars[] PROGMEM = " v3.1";  // Don't print this variable
 const __FlashStringHelper * ver = (const __FlashStringHelper *) verChars; // ok

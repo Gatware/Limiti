@@ -112,16 +112,16 @@ if (checkGPS())
     }
   else if (fix.valid.time)
     {
-    char timeStatus;
+    // char timeStatus;
     if(fix.valid.status)
       {
       if(fix.status == gps_fix::STATUS_NONE && fix.satellites==0) lcd.write(byte(0)); // RTC interno
       else if(fix.status == gps_fix::STATUS_TIME_ONLY) lcd.print('t'); // Riesce a leggere ora e data
       else lcd.print('t'); // Vede alcuni satelliti
       }
-    else timeStatus='?'; // Stato ancora non disponibile  
+    else lcd.print('?'); // Stato ancora non disponibile  
     
-    lcd.print(timeStatus);
+    // lcd.print(timeStatus);
     lcd.setCursor(9,0); lcd.print(F(" --  "));
     V = 0;
     }
